@@ -4,19 +4,4 @@ gunicorn==23.0.0
 
 mysql-connector-python==9.4.0
 python-dotenv==1.1.1
-
 requests==2.32.4
-
-numpy==2.3.1
-pandas==2.3.1
-scikit-learn==1.7.1
-scipy==1.16.0
-
-torch==2.7.1
-transformers==4.53.3
-sentence-transformers==5.0.0
-huggingface_hub==0.33.4
-faiss-cpu==1.11.0.post1
-
-tqdm==4.67.1
-Pillow==11.3.0
