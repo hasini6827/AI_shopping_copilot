@@ -1,0 +1,313 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ category }} | ShopBuddy
+{% endblock %}
+{% block content %}
+
+<!-- HERO -->
+
+<section class="category-hero">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <span class="badge bg-success mb-3">
+
+                    ShopBuddy Collection
+
+                </span>
+
+                <h1>
+
+                    {{ category }}
+
+                </h1>
+
+                <p>
+
+                    Discover premium {{ category.lower() }} carefully selected
+                    using ratings, reviews, popularity and customer satisfaction.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end">
+
+                <div class="category-counter">
+
+                    <h2>
+
+                        {{ products|length }}
+
+                    </h2>
+
+                    <small>
+
+                        Products Available
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BREADCRUMB -->
+
+<section class="py-3">
+
+<div class="container">
+
+<nav>
+
+<ol class="breadcrumb">
+
+<li class="breadcrumb-item">
+
+<a href="{{ url_for('home') }}">
+
+Home
+
+</a>
+
+</li>
+
+<li class="breadcrumb-item active">
+
+{{ category }}
+
+</li>
+
+</ol>
+
+</nav>
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="products-section">
+
+<div class="container">
+
+{% if products %}
+
+<div class="row g-4">
+
+{% for product in products %}
+
+{% include "components/product_card.html" %}
+
+{% endfor %}
+
+</div>
+{% else %}
+
+<!-- EMPTY CATEGORY -->
+
+<div class="empty-category">
+
+    <div class="text-center">
+
+        <div class="empty-icon">
+
+            <i class="bi bi-search"></i>
+
+        </div>
+
+        <h2>
+
+            No Products Found
+
+        </h2>
+
+        <p>
+
+            We couldn't find any products in the
+
+            <strong>{{ category }}</strong>
+
+            category right now.
+
+            Please explore our other collections.
+
+        </p>
+
+        <a
+
+            href="{{ url_for('home') }}"
+
+            class="btn btn-primary">
+
+            <i class="bi bi-house-door me-2"></i>
+
+            Back to Home
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</section>
+
+<!-- SHOPBUDDY SHOPPING TIPS -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+
+Shop Smarter with ShopBuddy
+
+</h2>
+
+<p>
+
+Use AI-powered recommendations to make confident purchasing decisions.
+
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-lg-4">
+
+<div class="feature-card">
+
+<i class="bi bi-star-fill"></i>
+
+<h5>
+
+Check Ratings
+
+</h5>
+
+<p>
+
+Products with higher customer ratings generally offer
+better overall satisfaction.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="feature-card">
+
+<i class="bi bi-chat-left-text"></i>
+
+<h5>
+
+Read Reviews
+
+</h5>
+
+<p>
+
+Customer reviews often reveal useful insights
+about real-world performance.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="feature-card">
+
+<i class="bi bi-cash-coin"></i>
+
+<h5>
+
+Compare Value
+
+</h5>
+
+<p>
+
+ShopBuddy highlights products that provide
+great quality for their price.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- AI BANNER -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="shopbuddy-ai text-center">
+
+<h3>
+
+<i class="bi bi-stars me-2"></i>
+
+Need Help Choosing?
+
+</h3>
+
+<p class="mt-3 mb-4">
+
+Ask ShopBuddy AI to recommend the best
+
+<strong>{{ category }}</strong>
+
+based on your budget, preferences and intended use.
+
+</p>
+
+<a
+
+href="{{ url_for('home') }}#ai-search"
+
+class="btn btn-primary">
+
+<i class="bi bi-robot me-2"></i>
+
+Ask ShopBuddy AI
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

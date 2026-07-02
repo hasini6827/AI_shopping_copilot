@@ -1,0 +1,473 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Search Results | ShopBuddy
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="category-hero">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <span class="badge bg-success mb-3">
+
+                     ShopBuddy AI Assistant
+
+                </span>
+
+                <h1>
+
+                    AI Search Results
+
+                </h1>
+
+                <p>
+
+                    Showing intelligent recommendations for
+
+                    <strong>
+
+                        "{{ query }}"
+
+                    </strong>
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end">
+
+                <div class="category-counter">
+
+                    <h2>
+
+                        {{ products|length }}
+
+                    </h2>
+
+                    <small>
+
+                        Products Found
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- AI SUMMARY -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="shopbuddy-ai">
+
+<h3>
+
+<i class="bi bi-stars me-2"></i>
+
+Why ShopBuddy Selected These Products
+
+</h3>
+
+{% if explanation %}
+
+<p class="mt-4">
+
+{{ explanation }}
+
+</p>
+
+{% else %}
+
+<p class="mt-4">
+
+These recommendations are based on your search,
+customer ratings, reviews, popularity and overall value.
+
+</p>
+
+{% endif %}
+
+<div class="row mt-4">
+
+<div class="col-md-3">
+
+<div class="feature-card">
+
+<i class="bi bi-star-fill"></i>
+
+<h5>
+
+Highly Rated
+
+</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-card">
+
+<i class="bi bi-chat-left-text"></i>
+
+<h5>
+
+Trusted Reviews
+
+</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-card">
+
+<i class="bi bi-currency-rupee"></i>
+
+<h5>
+
+Best Value
+
+</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-card">
+
+<i class="bi bi-lightning-charge"></i>
+
+<h5>
+
+Relevant Match
+
+</h5>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- RESULTS -->
+
+<section class="products-section">
+
+<div class="container">
+
+{% if products %}
+
+<div class="section-title">
+
+<h2>
+
+Recommended Products
+
+</h2>
+
+<p>
+
+{{ products|length }}
+
+products matched your search.
+
+</p>
+
+</div>
+
+<div class="row g-4">
+
+{% for product in products %}
+
+{% include "components/product_card.html" %}
+
+{% endfor %}
+
+</div>
+{% else %}
+
+<!-- NO RESULTS -->
+
+<div class="empty-category">
+
+    <div class="text-center">
+
+        <div class="empty-icon">
+
+            <i class="bi bi-search"></i>
+
+        </div>
+
+        <h2>
+
+            No Matching Products Found
+
+        </h2>
+
+        <p>
+
+            ShopBuddy couldn't find products matching
+
+            <strong>"{{ query }}"</strong>.
+
+            Try using simpler keywords or a broader search.
+
+        </p>
+
+        <a
+
+            href="{{ url_for('home') }}"
+
+            class="btn btn-primary">
+
+            <i class="bi bi-arrow-left me-2"></i>
+
+            Back to Home
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</section>
+
+<!-- SEARCH AGAIN -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="checkout-card">
+
+<div class="text-center">
+
+<h2>
+
+Search Again
+
+</h2>
+
+<p class="text-muted mb-4">
+
+Looking for something else? Ask ShopBuddy AI again.
+
+</p>
+
+<form
+
+action="{{ url_for('ai_search') }}"
+
+method="POST"
+
+class="mx-auto"
+
+style="max-width:750px;">
+
+<div class="input-group input-group-lg">
+
+<input
+
+type="text"
+
+name="query"
+
+class="form-control"
+
+placeholder="Example: Best laptop under ₹80,000 for Machine Learning"
+
+required>
+
+<button
+
+class="btn btn-primary">
+
+<i class="bi bi-stars me-2"></i>
+
+Ask ShopBuddy
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- AI SEARCH TIPS -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+
+Get Better AI Recommendations
+
+</h2>
+
+<p>
+
+More specific searches produce more relevant results.
+
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-lg-4">
+
+<div class="feature-card">
+
+<i class="bi bi-lightbulb"></i>
+
+<h5>
+
+Be Specific
+
+</h5>
+
+<p>
+
+Include budget, purpose or preferred brands.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="feature-card">
+
+<i class="bi bi-funnel"></i>
+
+<h5>
+
+Use Filters
+
+</h5>
+
+<p>
+
+Mention gaming, programming,
+college, office or travel.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="feature-card">
+
+<i class="bi bi-stars"></i>
+
+<h5>
+
+Trust ShopBuddy AI
+
+</h5>
+
+<p>
+
+Recommendations combine ratings,
+reviews and product quality.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="shopbuddy-ai text-center">
+
+<h2>
+
+Still Need Help Choosing?
+
+</h2>
+
+<p class="mt-3 mb-4">
+
+ShopBuddy AI can recommend products based on
+your budget, preferred brands, intended use,
+and customer ratings.
+
+</p>
+
+<a
+
+href="{{ url_for('home') }}"
+
+class="btn btn-primary btn-lg">
+
+<i class="bi bi-house-door me-2"></i>
+
+Explore ShopBuddy
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

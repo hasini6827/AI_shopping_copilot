@@ -1,0 +1,570 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ product.product_name }} | ShopBuddy
+{% endblock %}
+
+{% block content %}
+
+<!-- PRODUCT HEADER -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <!-- Product Image -->
+
+            <div class="col-lg-5 text-center">
+
+                <img
+                    src="{{ url_for('static', filename=product.image_url) }}"
+                    alt="{{ product.product_name }}"
+                    class="product-details-image">
+
+            </div>
+
+            <!-- Product Information -->
+
+            <div class="col-lg-7">
+
+                <span class="badge bg-success mb-3">
+
+                    {{ product.category }}
+
+                </span>
+
+                <h1 class="mb-3">
+
+                    {{ product.product_name }}
+
+                </h1>
+
+                <h2 class="text-success mb-3">
+
+                    ₹{{ "{:,.0f}".format(product.price) }}
+
+                </h2>
+
+                <p>
+
+                    ⭐ {{ "%.1f"|format(product.rating_avg) }}
+
+                    ({{ "{:,}".format(product.review_count) }} Reviews)
+
+                </p>
+
+                <p>
+
+                    {{ product.description }}
+
+                </p>
+
+                {% if product.discount_percent > 0 %}
+
+                <span class="badge bg-danger">
+
+                    {{ product.discount_percent }}% OFF
+
+                </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- WHY SHOPBUDDY RECOMMENDS THIS -->
+
+<div class="shopbuddy-ai">
+
+    <h4>
+
+        <i class="bi bi-stars me-2"></i>
+
+        Why ShopBuddy Recommends This Product
+
+    </h4>
+
+    <ul class="list-unstyled mt-4">
+
+        <li class="mb-3">
+
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+
+            Rated
+
+            <strong>
+
+                {{ "%.1f"|format(product.rating_avg) }}/5
+
+            </strong>
+
+            by customers.
+
+        </li>
+
+        <li class="mb-3">
+
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+
+            Based on
+
+            <strong>
+
+                {{ "{:,}".format(product.review_count) }}
+
+            </strong>
+
+            customer reviews.
+
+        </li>
+
+        {% if product.discount_percent > 0 %}
+
+        <li class="mb-3">
+
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+
+            Currently available with
+
+            <strong>
+
+                {{ product.discount_percent }}% OFF
+
+            </strong>
+
+        </li>
+
+        {% endif %}
+
+        {% if product.badge %}
+
+        <li class="mb-3">
+
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+
+            Recognized as
+
+            <strong>
+
+                {{ product.badge }}
+
+            </strong>
+
+        </li>
+
+        {% endif %}
+
+        <li>
+
+            <i class="bi bi-robot text-primary me-2"></i>
+
+            {{ ai_insight }}
+
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- PRODUCT SPECIFICATIONS -->
+
+<div class="specifications">
+
+    <table class="table table-borderless mb-0">
+
+        <tbody>
+
+            <tr>
+
+                <th>
+
+                    Brand
+
+                </th>
+
+                <td>
+
+                    {{ product.brand }}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+
+                    Category
+
+                </th>
+
+                <td>
+
+                    {{ product.category }}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+
+                    Customer Rating
+
+                </th>
+
+                <td>
+
+                    {{ "%.1f"|format(product.rating_avg) }}/5
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+
+                    Reviews
+
+                </th>
+
+                <td>
+
+                    {{ "{:,}".format(product.review_count) }}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+
+                    Price
+
+                </th>
+
+                <td>
+
+                    ₹{{ "{:,.0f}".format(product.price) }}
+
+                </td>
+
+            </tr>
+
+            {% if product.discount_percent > 0 %}
+
+            <tr>
+
+                <th>
+
+                    Discount
+
+                </th>
+
+                <td>
+
+                    {{ product.discount_percent }}%
+
+                </td>
+
+            </tr>
+
+            {% endif %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!-- DELIVERY -->
+
+<div class="delivery-card">
+
+    <h5>
+
+        Delivery & Services
+
+    </h5>
+
+    <div class="delivery-item">
+
+        <i class="bi bi-truck"></i>
+
+        <div>
+
+            <strong>
+
+                Free Delivery
+
+            </strong>
+
+            <br>
+
+            <small>
+
+                Estimated within 3–5 business days
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <div class="delivery-item">
+
+        <i class="bi bi-arrow-repeat"></i>
+
+        <div>
+
+            <strong>
+
+                Easy Returns
+
+            </strong>
+
+            <br>
+
+            <small>
+
+                7-day replacement available
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <div class="delivery-item">
+
+        <i class="bi bi-shield-check"></i>
+
+        <div>
+
+            <strong>
+
+                Secure Checkout
+
+            </strong>
+
+            <br>
+
+            <small>
+
+                Your payment information is protected
+
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ACTION BUTTONS -->
+
+<div class="purchase-buttons">
+
+    <form
+
+        action="{{ url_for('add_to_cart', product_id=product.product_id) }}"
+
+        method="POST"
+
+        class="flex-fill">
+
+        <button
+
+            type="submit"
+
+            class="btn btn-primary w-100">
+
+            <i class="bi bi-cart-plus me-2"></i>
+
+            Add to Cart
+
+        </button>
+
+    </form>
+
+    <form
+    action="{{ url_for('buy_now', product_id=product.product_id) }}"
+    method="POST"
+    class="flex-fill">
+
+    <button
+        type="submit"
+        class="btn btn-outline-primary w-100">
+
+        <i class="bi bi-lightning-charge me-2"></i>
+
+        Buy Now
+
+    </button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- RELATED PRODUCTS -->
+
+<section class="related-products">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>
+
+                You May Also Like
+
+            </h2>
+
+            <p>
+
+                Similar products carefully selected by ShopBuddy based on
+                category, popularity and customer ratings.
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            {% for product in related_products %}
+
+                {% include "components/product_card.html" %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SHOPBUDDY PROMISE -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    <h5>
+
+                        Trusted Products
+
+                    </h5>
+
+                    <p>
+
+                        Every recommendation considers
+                        ratings, popularity and customer reviews.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-arrow-repeat"></i>
+
+                    <h5>
+
+                        Easy Returns
+
+                    </h5>
+
+                    <p>
+
+                        Enjoy a hassle-free return experience
+                        on eligible products.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-truck"></i>
+
+                    <h5>
+
+                        Fast Delivery
+
+                    </h5>
+
+                    <p>
+
+                        Reliable delivery with secure packaging
+                        and order tracking.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-card">
+
+                    <i class="bi bi-stars"></i>
+
+                    <h5>
+
+                        AI Shopping
+
+                    </h5>
+
+                    <p>
+
+                        ShopBuddy helps you discover products
+                        that best match your needs.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

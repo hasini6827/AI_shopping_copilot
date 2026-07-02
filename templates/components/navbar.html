@@ -1,0 +1,261 @@
+<nav class="navbar navbar-expand-lg">
+
+    <div class="container">
+
+        <!--LOGO  -->
+
+        <a class="navbar-brand" href="{{ url_for('home') }}">
+
+            <img src="{{ url_for('static', filename='images/logo.gif') }}"
+                 alt="ShopBuddy">
+
+            <div>
+
+                <span style="color:#2F2F2F;">Shop</span><span style="color:#31564A;">Buddy</span>
+
+            </div>
+
+        </a>
+
+        <!-- Mobile -->
+
+        <button
+            class="navbar-toggler border-0 shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent">
+
+            <i class="bi bi-list fs-2"></i>
+
+        </button>
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbarContent">
+
+            <!--  MENU  -->
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="{{ url_for('home') }}">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+                
+
+                <li class="nav-item dropdown">
+
+                    <a
+    class="nav-link"
+    data-bs-toggle="dropdown"
+    href="#">
+
+    Categories
+
+</a>
+
+                    <ul class="dropdown-menu border-0 shadow rounded-4">
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ url_for('category',category='Laptops') }}">
+                                💻 Laptops
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ url_for('category',category='Smartphones') }}">
+                                📱 Smartphones
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ url_for('category',category='Headphones') }}">
+                                🎧 Headphones
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ url_for('category',category='Shoes') }}">
+                                👟 Shoes
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ url_for('category',category='Beauty') }}">
+                                💄 Beauty
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ url_for('category',category='Books') }}">
+                                📚 Books
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ url_for('category',category='Sports') }}">
+                                ⚽ Sports
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#featured">
+
+                        Featured
+
+                    </a>
+
+                </li>
+
+                
+
+            </ul>
+
+            <!--  SEARCH  -->
+<form
+    class="search-form me-4"
+    action="{{ url_for('search') }}"
+    method="GET">
+
+    <div class="search-box">
+
+        <input
+            type="search"
+            class="form-control search-input"
+            name="q"
+            placeholder="Search products..."
+            aria-label="Search">
+
+        <button
+            class="search-btn"
+            type="submit">
+
+            <i class="bi bi-search"></i>
+
+        </button>
+
+    </div>
+
+</form>
+            
+
+            <!--  ICONS  -->
+
+            <div class="nav-icons">
+
+                <a href="{{ url_for('cart') }}"
+                   class="position-relative">
+
+                    <i class="bi bi-bag"></i>
+
+                    {% if session.cart_count %}
+
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+
+                        {{ session.cart_count }}
+
+                    </span>
+
+                    {% endif %}
+
+                </a>
+
+                {% if session.user_id %}
+
+                <div class="dropdown">
+
+                    <a
+                        href="#"
+
+                        data-bs-toggle="dropdown">
+
+                        <i class="bi bi-person-circle"></i>
+
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow rounded-4">
+
+                        <li>
+
+                            <a class="dropdown-item"
+
+                               href="{{ url_for('profile') }}">
+
+                                My Profile
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a class="dropdown-item"
+
+                               href="{{ url_for('orders') }}">
+
+                                My Orders
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <hr class="dropdown-divider">
+
+                        </li>
+
+                        <li>
+
+                            <a class="dropdown-item text-danger"
+
+                               href="{{ url_for('logout') }}">
+
+                                Logout
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                {% else %}
+
+                <a href="{{ url_for('login') }}">
+
+                    <i class="bi bi-person"></i>
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>

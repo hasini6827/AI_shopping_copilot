@@ -1,0 +1,327 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Profile | ShopBuddy
+{% endblock %}
+{% block content %}
+
+<!-- HERO -->
+
+<section class="category-hero">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <span class="badge bg-success mb-3">
+
+                    My ShopBuddy Account
+
+                </span>
+
+                <h1>
+
+                    Welcome, {{ user.name }}
+
+                </h1>
+
+                <p>
+
+                    Manage your profile, monitor your shopping activity,
+                    and keep track of your AI-powered shopping journey.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end">
+
+                <div class="category-counter">
+
+                    <h2>
+
+                        {{ cart_count }}
+
+                    </h2>
+
+                    <small>
+
+                        Items in Cart
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROFILE -->
+
+<section class="profile-page">
+
+<div class="container">
+
+<div class="row g-5">
+
+<!-- LEFT CARD -->
+
+<div class="col-lg-4">
+
+<div class="profile-card">
+
+<div class="profile-avatar">
+
+<i class="bi bi-person-fill"></i>
+
+</div>
+
+<h3>
+
+{{ user.name }}
+
+</h3>
+
+<p>
+
+{{ user.email }}
+
+</p>
+
+<a
+
+href="{{ url_for('logout') }}"
+
+class="btn btn-outline-danger w-100">
+
+<i class="bi bi-box-arrow-right me-2"></i>
+
+Logout
+
+</a>
+
+</div>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div class="col-lg-8">
+
+<div class="profile-stats">
+
+<div class="profile-stat">
+
+<h3>
+
+{{ cart_count }}
+
+</h3>
+
+<small>
+
+Cart Items
+
+</small>
+
+</div>
+<div class="profile-stat">
+
+    <h3>
+
+        ShopBuddy
+
+    </h3>
+
+    <small>
+
+        AI Assistant
+
+    </small>
+
+</div>
+
+<div class="profile-stat">
+
+<h3>
+
+AI
+
+</h3>
+
+<small>
+
+Shopping Assistant
+
+</small>
+
+</div>
+
+</div>
+<div class="checkout-card mt-5">
+
+    <h3>
+
+        Account Overview
+
+    </h3>
+
+    <div class="row mt-4">
+
+        <div class="col-md-6 mb-3">
+
+            <div class="feature-card">
+
+                <i class="bi bi-cart-check"></i>
+
+                <h5>Shopping Cart</h5>
+
+                <p>
+
+                    {{ cart_count }} item(s) currently in your cart.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6 mb-3">
+
+            <div class="feature-card">
+
+                <i class="bi bi-stars"></i>
+
+                <h5>ShopBuddy AI</h5>
+
+                <p>
+
+                    Discover smarter recommendations powered by AI.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SHOPBUDDY AI -->
+
+<div class="shopbuddy-ai mt-5">
+
+    <h3>
+
+        <i class="bi bi-stars me-2"></i>
+
+        ShopBuddy AI Insights
+
+    </h3>
+
+    <ul class="list-unstyled mt-4">
+
+        <li class="mb-3">
+
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+
+            AI recommendations become more accurate as
+            you continue exploring products.
+
+        </li>
+
+        <li class="mb-3">
+
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+
+            Highly rated products are prioritized
+            in recommendations.
+
+        </li>
+
+        <li class="mb-3">
+
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+
+            Recent searches help personalize
+            future product suggestions.
+
+        </li>
+
+        <li>
+
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+
+            ShopBuddy continuously helps you discover
+            better products and deals.
+
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- QUICK ACTIONS -->
+
+<div class="row g-4 mt-2">
+
+    <div class="col-md-4">
+
+        <a href="{{ url_for('home') }}"
+
+           class="btn btn-primary w-100">
+
+            <i class="bi bi-house-door me-2"></i>
+
+            Home
+
+        </a>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <a href="{{ url_for('cart') }}"
+
+           class="btn btn-outline-primary w-100">
+
+            <i class="bi bi-cart me-2"></i>
+
+            Cart
+
+        </a>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <a href="{{ url_for('logout') }}"
+
+           class="btn btn-outline-danger w-100">
+
+            <i class="bi bi-box-arrow-right me-2"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}
